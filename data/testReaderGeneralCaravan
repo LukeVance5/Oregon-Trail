@@ -1,0 +1,18 @@
+{
+    "condition": 2,
+    "distanceFromOregon": 2200,
+    "caravanName": "O'Donnell's",
+    "people": [
+        {
+            "name": "Jack",
+            "health": 3,
+            "age": 12
+        },
+        {
+            "name": "Mike",
+            "health": 3,
+            "age": 14
+        }
+    ],
+    "food": 490
+}

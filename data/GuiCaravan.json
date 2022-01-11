@@ -1,0 +1,23 @@
+{
+    "condition": 3,
+    "distanceFromOregon": 2200,
+    "caravanName": "Nice",
+    "people": [
+        {
+            "name": "Person One",
+            "health": 3,
+            "age": 12
+        },
+        {
+            "name": "Person Two",
+            "health": 3,
+            "age": 10
+        },
+        {
+            "name": "Person Three",
+            "health": 3,
+            "age": 14
+        }
+    ],
+    "food": 500
+}

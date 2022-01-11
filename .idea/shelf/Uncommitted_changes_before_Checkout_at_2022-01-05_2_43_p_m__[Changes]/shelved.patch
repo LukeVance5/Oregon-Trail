@@ -1,0 +1,28 @@
+Index: src/main/ui/AddPersonPopUp.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package ui;\r\n\r\nimport model.Person;\r\n\r\nimport javax.swing.*;\r\nimport java.awt.*;\r\nimport java.awt.event.ActionEvent;\r\nimport java.awt.event.ActionListener;\r\nimport java.util.ArrayList;\r\n\r\n// The addPersonPopUp that is created when pressing addPerson in caravanPanel\r\npublic class AddPersonPopUp extends JFrame implements ActionListener {\r\n    private DefaultListModel<Person> groupList;\r\n    private AddName name;\r\n    private AddAge age;\r\n    private JButton addPersonButton;\r\n    private Label topLabel;\r\n    private CaravanBarPanel caravanBarPanel;\r\n\r\n\r\n\r\n    // MODIFIES: this\r\n    // EFFECTS: constructs the addPersonPopUp\r\n    public AddPersonPopUp(DefaultListModel<Person> groupList, CaravanBarPanel caravanBarPanel) {\r\n        this.groupList = groupList;\r\n        this.caravanBarPanel = caravanBarPanel;\r\n        topLabel = new Label(\"Person Adder\");\r\n        addPersonButton = new JButton();\r\n        addPersonButton.addActionListener(this);\r\n        addPersonButton.setText(\"Add Person\");\r\n        this.setLayout(new FlowLayout());\r\n        topLabel.setAlignment((int) CENTER_ALIGNMENT);\r\n        this.setSize(new Dimension(300,300));\r\n        this.setResizable(false);\r\n        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);\r\n        name = new AddName();\r\n        age = new AddAge();\r\n        add(topLabel);\r\n        add(name);\r\n        add(age);\r\n        add(addPersonButton);\r\n        this.setVisible(true);\r\n\r\n    }\r\n\r\n\r\n    // MODIFIES: caravanPanel.groupListModel\r\n    // EFFECTS: adds a person to caravanPanel.groupListModel when name.getInput() is an appropiate name and\r\n    // age.getInput() is an appropiate age\r\n    @Override\r\n    public void actionPerformed(ActionEvent e) {\r\n        Boolean properName = name.getInput().trim().matches(\r\n                \"((([a-zA-Z]')?)[a-zA-Z]+('[a-z])?)+( ((([a-zA-Z]')?)[a-zA-Z]+('[a-z])?))*\");\r\n        Boolean properAge = age.getInput().trim().matches(\"[1-9]+[0-9]*\");\r\n        if (properName && properAge && groupList.size() < 3) {\r\n            groupList.addElement(new Person(name.getInput(),Integer.parseInt(age.getInput())));\r\n            topLabel.setText(\"Person Adder\");\r\n        } else if (groupList.size() >= 3) {\r\n            new ErrorPopUp(\"ERROR! Caravan already at max capacity\");\r\n        } else if (!properName) {\r\n            new ErrorPopUp(\"ERROR! Name must be a proper name, only one space between\");\r\n        } else if (!properAge) {\r\n            new ErrorPopUp(\"ERROR! Age must be an integer\");\r\n        }\r\n        caravanBarPanel.setFactor(groupList.size());\r\n        caravanBarPanel.paintRectangle();\r\n\r\n\r\n    }\r\n}\r\n\r\n\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/ui/AddPersonPopUp.java b/src/main/ui/AddPersonPopUp.java
+--- a/src/main/ui/AddPersonPopUp.java	(revision 1f6fb5ce23a4e55f60ac746cb06f1405faefaa01)
++++ b/src/main/ui/AddPersonPopUp.java	(date 1638554692000)
+@@ -31,8 +31,8 @@
+         this.setLayout(new FlowLayout());
+         topLabel.setAlignment((int) CENTER_ALIGNMENT);
+         this.setSize(new Dimension(300,300));
++        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+         this.setResizable(false);
+-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+         name = new AddName();
+         age = new AddAge();
+         add(topLabel);
+@@ -55,6 +55,7 @@
+         if (properName && properAge && groupList.size() < 3) {
+             groupList.addElement(new Person(name.getInput(),Integer.parseInt(age.getInput())));
+             topLabel.setText("Person Adder");
++
+         } else if (groupList.size() >= 3) {
+             new ErrorPopUp("ERROR! Caravan already at max capacity");
+         } else if (!properName) {

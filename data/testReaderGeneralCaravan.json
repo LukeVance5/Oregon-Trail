@@ -1,0 +1,30 @@
+{
+  "people": [
+    {
+      "name": "Michael",
+      "age" : 23,
+      "health": 2
+    },
+    {
+      "name": "George",
+      "age" : 15,
+      "health": 3
+    },
+    {
+      "name" :" siddharth",
+      "age" : 19,
+      "health": 1
+    }
+
+  ],
+  "caravanName": "Donner Party",
+  "food": 412,
+  "condition": 2,
+  "distanceFromOregon": 1000
+
+
+
+
+
+
+}
